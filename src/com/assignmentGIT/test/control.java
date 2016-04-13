@@ -1,26 +1,18 @@
 package com.assignmentGIT.test;
-
-import java.io.FileNotFoundException;
-
 /*
-Main class for 
+Control class for instantiating the GUI
 Author: Dara Marshall-Crowe
 Student no.: C14517457
 Date: 03/04/2016
 */
+import com.assignmentGIT.test.GUI;
+
 
 public class control
 {
 	public static void main(String[] args)
 	{
-		String retString;
-		try {
-			retString = SetComparing.SetCompare();
-			System.out.println(retString);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		GUI userGUI = new GUI();
+		userGUI.GUImethod();
 	}
 }
