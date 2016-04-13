@@ -1,3 +1,9 @@
+package com.assignmentGIT.test;
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashSet;
 
 /*
 Class to handle file reading
@@ -6,53 +12,65 @@ Student no.: C14517457
 Date: 05/04/2016
 */
 
-import java.io.FileReader;
-import java.io.BufferedReader;
+import java.util.Scanner;
 
 public class FileHandling
 {
-	String word = "default";
+
+	public static HashSet<String> doc_1_words = SetComparing.doc_2_words;
+	public static HashSet<String> doc_2_words = SetComparing.doc_1_words;
+	public static HashSet<String> stop_words = SetComparing.stop_words;
 	
-	
-	/* reading the stop words from stop_words.txt into the hashed set */
-	BufferedReader reader = new BufferedReader(stop_words.txt);
-	while(reader.hasNext())
+	public void FileHandler() throws FileNotFoundException
 	{
-		word = reader.next();
-		stop_words.add(word);
-	}
-	
-	/* reading the words in document 1 into the hashed set (excluding stop words) */
-	BufferedReader reader = new BufferedReader(file1);
-	while(reader.hasNext())
-	{
-		word = reader.next();
+		String word = "default";
 		
-		/* excluding stop words */
-		if(stop_words.contains(word.toLowerCase())
-		{
-			
-		}
-		else
-		{
-			doc_1_words.add(reader.next());
-		}
-	}
-	
-	/* reading the words in document 2 into the hashed set (excluding stop words) */
-	BufferedReader reader = new BufferedReader(file2);
-	while(reader.hasNext())
-	{
-		word = reader.next();
 		
-		/* excluding stop words */
-		if(stop_words.contains(word.toLowerCase())
+		/* reading the stop words from stop_words.txt into the hashed set */
+		
+		Scanner sc = new Scanner(new File("stop_words.txt"));
+		while(sc.hasNext())
 		{
+			word = sc.next();
+			stop_words.add(word);
+		}
+		
+		/* reading the words in document 1 into the set (excluding stop words) */
+	    
+		sc = new Scanner(new File("New Text Document.txt"));
+		while(sc.hasNext())
+		{
+			word = sc.next();
+			/* excluding stop words */
+			if(stop_words.contains(word.toLowerCase()))
+			{
+				
+			}
+			else
+			{
+				doc_1_words.add(word);
+			}
+		}
+		
+		/* reading the words in document 2 into the set (excluding stop words) */
+		sc = new Scanner(new File("New Text Document (3).txt"));
+		while(sc.hasNext())
+		{
+			word = sc.next();
 			
+			/* excluding stop words from being added to the set*/
+			if(stop_words.contains(word.toLowerCase()))
+			{
+				
+			}
+			else
+			{
+				doc_2_words.add(word);
+			}
 		}
-		else
-		{
-			doc_2_words.add(reader.next());
-		}
+		sc.close();
+		System.out.println(doc_1_words);
+		System.out.println(doc_2_words);
+		System.out.println(stop_words);
 	}
 }
